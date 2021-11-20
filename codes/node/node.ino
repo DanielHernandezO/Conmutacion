@@ -2,14 +2,16 @@
 #include <FirebaseESP8266.h>
 
 
-char *ssid  = "SOSA PENA";
-char *password = "1BX27e8JDU1";
+char *ssid  = "IoT-B19";
+char *password = "lcontrol2020*";
 
 char *host = "https://venom-293e9-default-rtdb.firebaseio.com/";
 char *auth = "QfdBEvwB5uBhBx75W4XqAhscLSEunhC3GxzwXvGU";
 
 FirebaseData firebasedata;
 void setup() {
+  pinMode(A0,INPUT);
+  
   Serial.begin(115200);
   Serial.println();
 
@@ -32,10 +34,27 @@ void setup() {
 //temperatura y humedad d
 //ventilador -> v0 -> v1
 void loop() {
-  Firebase.getString(firebasedata,"commands/comprar/accion");
-  //Serial.println(firebasedata.stringData());
+  Firebase.getString(firebasedata,"commands/P/Estado");
+  Serial.print("p"+firebasedata.stringData());
+  Firebase.getString(firebasedata,"commands/l/Estado");
+  Serial.print("l"+firebasedata.stringData());
+  Firebase.getString(firebasedata,"commands/v/Estado");
+  Serial.print("v"+firebasedata.stringData());
+  
+  //Firebase.getString(firebasedata,"commands/D/Estado");
   Serial.print("d");
-  while (!Serial1.available());
-  Serial.print(Serial.read());
-  delay(1000000);
+  /*String contrasenia="";
+  char aux;
+  for (int i = 0; i < 4; i++){
+    while (!Serial1.available());
+    aux = Serial1.read();
+    contrasenia += aux;
+  }
+  Firebase.setString(firebasedata,"commands/Contrasenia",contrasenia);
+  */N
+  Firebase.getString(firebasedata,"commands/Contrasenia");
+  Serial.print("c"+firebasedata.stringData());
+  
+  delay(1000);
+  //Serial.print("v0");
 }
