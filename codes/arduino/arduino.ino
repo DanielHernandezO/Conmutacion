@@ -2,6 +2,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <Keypad.h>
 
+
 #define red A0
 #define blue A1
 #define green A2
@@ -65,6 +66,7 @@ void leds(int r,int b, int g){
 }
 
 void loop() {
+  
   char aux;
   //Serial.println(analogRead(smoke));
   if (analogRead(smoke) > sensorThreshold){
